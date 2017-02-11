@@ -11,6 +11,7 @@ export class UserService {
 
    }
    getUser():Observable<UserEntity[]>{
-    return this.myHttp.get('/api.userCollection.json').map(response=>response.json().data as UserEntity[])
+    return this.myHttp.get('usercollection.json')
+    .map(response=>response.json().data as UserEntity[])
    }
 }

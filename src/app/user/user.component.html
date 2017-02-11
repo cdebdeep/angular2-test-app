@@ -1,3 +1,20 @@
-<p>
-  user works!
-</p>
+<div>
+  <div>
+    Click to get the user list :
+    <input type="button" value="Click" (click)="getUser()"  />
+  </div>
+  <div>
+    <table>
+    <thead>
+        <th>Name</th>
+    </thead>
+    <tbody>
+    <tr *ngFor="let u of UserCollection | async">
+        <td>
+            {{u.fname}} {{u.lname}}
+        </td>
+    </tr>
+    </tbody>
+</table>
+  </div>
+</div>

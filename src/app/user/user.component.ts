@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {Observable} from 'rxjs/Observable'
 import {UserEntity} from '../user-entity';
 import {UserService} from '../user.service';
+
 
 
 @Component({
@@ -9,10 +11,28 @@ import {UserService} from '../user.service';
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
-
-  constructor(private userService :UserService) { }
+  private UserCollection:Array<UserEntity>;
+  private successMsg='';
+  private errorMsg='';
+  constructor(private userService :UserService) { 
+    this.UserCollection=[];
+  }
 
   ngOnInit() {
+  }
+  getUser(){
+    this.userService.getUser()
+    .subscribe((response:UserEntity[])=>{
+      this.UserCollection=response
+      console.log(response)
+    },
+    err=>{
+      this.errorMsg=err;
+    },
+    ()=>{
+      this.successMsg="Record get complete";
+    }
+    )    
   }
 
 }
