@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {Http} from '@angular/http'
 import {Observable} from 'rxjs/Observable'
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/Repeat';
 import {UserEntity} from './user-entity'
 
 @Injectable()
@@ -11,7 +12,8 @@ export class UserService {
 
    }
    getUser():Observable<UserEntity[]>{
+     
     return this.myHttp.get('usercollection.json')
-    .map(response=>response.json().data as UserEntity[])
+    .map(response=>response.json() as UserEntity[])
    }
 }
